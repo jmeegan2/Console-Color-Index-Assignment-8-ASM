@@ -1,6 +1,4 @@
 ; EXTERNAL DEPENDENCIES
-;So this is probrably a good point to start at 4/29
-
 INCLUDE		Irvine32.inc
 INCLUDELIB	Irvine32.lib
 
@@ -17,10 +15,10 @@ NUMBER_OF_COLORS =		16d
 
 ; DATA SEGMENT
 .data
-foregroundColorCounter		BYTE	?
-backgroundColorCounter		BYTE	?
-sampleText					BYTE	"                                  ", 0Dh, 0Ah, 0
-string_Horizontal			BYTE	"+0    +1    +2    +3    +4    +5    +6    +7    +8    +9   +10    +11    +12    +13    +14    +15", 0Dh, 0Ah, 0
+foregroundColorCounter		BYTE	4
+backgroundColorCounter		BYTE	4
+sampleText					BYTE	"                                                    ", 0Dh, 0Ah, 0
+
 ; CODE SEGMENT
 .code
 ; NOTE --------------------------------------------------------------------------------------------
@@ -30,19 +28,15 @@ string_Horizontal			BYTE	"+0    +1    +2    +3    +4    +5    +6    +7    +8    
 ;  for overall code readability.
 ; -------------------------------------------------------------------------------------------------
 main PROC
-mov edx, offset string_Horizontal
-call writestring
 	; Set up variables for OUTER loop.
 	mov ECX, NUMBER_OF_COLORS
 	mov backgroundColorCounter, 0
-
-	
 	backgroundLoop:
 		; Set the background color in AL.
 		movzx EAX, backgroundColorCounter
 		
 		; Shift the background color to the upper half of AL (where it belongs).
-		shl EAX, 2
+		shl EAX, 4
 
 		; Preserve ECX contents upon entering INNER loop.
 		push ECX
@@ -50,11 +44,10 @@ call writestring
 		; Set up variables for INNER loop.
 		mov ECX, NUMBER_OF_COLORS
 		mov foregroundColorCounter, 0
-				foregroundLoop:
+		foregroundLoop:
 			; Set the newly forged text color and display the sample message.
 			call SetTextColor
-			call PrintSampleText		
-
+			call PrintSampleText
 
 			; Move onto the next foreground color.
 			inc AL
