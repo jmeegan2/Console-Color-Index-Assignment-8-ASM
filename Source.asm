@@ -11,13 +11,13 @@ INCLUDELIB	Irvine32.lib
 ExitProcess PROTO, dwExitCode:DWORD
 
 ; SYMBOLIC CONSTANTS
-NUMBER_OF_COLORS =		8d
+NUMBER_OF_COLORS =		16d
 
 ; DATA SEGMENT
 .data
 foregroundColorCounter		BYTE	2
 backgroundColorCounter		BYTE	2
-sampleText					BYTE	"    jimmy was here whats good                                                                                             ", 0Dh, 0Ah, 0
+sampleText					BYTE	"    jimmy was here whats good                                                                                           ", 0Dh, 0Ah, 0
 
 ; CODE SEGMENT
 .code
@@ -44,14 +44,14 @@ main PROC
 		; Set up variables for INNER loop.
 		mov ECX, NUMBER_OF_COLORS
 		mov foregroundColorCounter, 0
-		foregroundLoop:
+		;foregroundLoop:
 			; Set the newly forged text color and display the sample message.
 			call SetTextColor
 			call PrintSampleText
 
 			; Move onto the next foreground color.
 			inc AL
-		loop foregroundLoop
+		;loop foregroundLoop
 		
 		; Restore the ECX contents to allow OUTER loop to continue flowing naturally.
 		pop ECX
