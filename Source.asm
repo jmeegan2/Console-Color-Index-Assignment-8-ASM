@@ -11,13 +11,13 @@ INCLUDELIB	Irvine32.lib
 ExitProcess PROTO, dwExitCode:DWORD
 
 ; SYMBOLIC CONSTANTS
-NUMBER_OF_COLORS =		16d
+NUMBER_OF_COLORS =		8d
 
 ; DATA SEGMENT
 .data
-foregroundColorCounter		BYTE	4
-backgroundColorCounter		BYTE	4
-sampleText					BYTE	"                                                    ", 0Dh, 0Ah, 0
+foregroundColorCounter		BYTE	2
+backgroundColorCounter		BYTE	2
+sampleText					BYTE	"    jimmy was here whats good                                                                                             ", 0Dh, 0Ah, 0
 
 ; CODE SEGMENT
 .code
