@@ -15,6 +15,7 @@ NUMBER_OF_COLORS =		16d
 
 ; DATA SEGMENT
 .data
+topRowNumbers				BYTE    "+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +11 +12 +13 +14 +15", 0
 foregroundColorCounter		BYTE	2
 backgroundColorCounter		BYTE	2
 sampleText					BYTE	"    jimmy was here whats good                                                                                           ", 0Dh, 0Ah, 0
@@ -29,6 +30,10 @@ sampleText					BYTE	"    jimmy was here whats good                              
 ; -------------------------------------------------------------------------------------------------
 main PROC
 	; Set up variables for OUTER loop.
+	mov edx, offset topRowNumbers
+	call writestring
+	call crlf
+
 	mov ECX, NUMBER_OF_COLORS
 	mov backgroundColorCounter, 0
 	backgroundLoop:
@@ -36,7 +41,7 @@ main PROC
 		movzx EAX, backgroundColorCounter
 		
 		; Shift the background color to the upper half of AL (where it belongs).
-		shl EAX, 4
+		shl EAX, 4				;dont change 5/1
 
 		; Preserve ECX contents upon entering INNER loop.
 		push ECX
@@ -44,10 +49,16 @@ main PROC
 		; Set up variables for INNER loop.
 		mov ECX, NUMBER_OF_COLORS
 		mov foregroundColorCounter, 0
+		
+		call SetTextColor
+			call PrintSampleText
+		
+		
+		;originally part of the code example i copied this outline from, may come back to later not sure 5/1
 		;foregroundLoop:
 			; Set the newly forged text color and display the sample message.
-			call SetTextColor
-			call PrintSampleText
+			;call SetTextColor
+			;call PrintSampleText
 
 			; Move onto the next foreground color.
 			inc AL
