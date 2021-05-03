@@ -18,6 +18,7 @@ NUMBER_OF_COLORS =		16d
 topRowNumbers				BYTE    "+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +11 +12 +13 +14 +15", 0
 foregroundColorCounter		BYTE	2
 backgroundColorCounter		BYTE	2
+moreText					BYTE    "help", 0Dh, 0Ah, 0
 sampleText					BYTE	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 0Dh, 0Ah, 0
 
 ; CODE SEGMENT
@@ -56,9 +57,9 @@ main PROC
 		mov ECX, NUMBER_OF_COLORS
 		mov foregroundColorCounter, 0
 		
-			call PrintSampleText
+			
 			call SetTextColor
-		
+		call PrintSampleText
 		
 		;originally part of the code example i copied this outline from, may come back to later not sure 5/1
 		;foregroundLoop:
