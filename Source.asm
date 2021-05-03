@@ -18,7 +18,7 @@ NUMBER_OF_COLORS =		16d
 topRowNumbers				BYTE    "+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +11 +12 +13 +14 +15", 0
 foregroundColorCounter		BYTE	2
 backgroundColorCounter		BYTE	2
-sampleText					BYTE	"    jimmy was here whats good                                                                                           ", 0Dh, 0Ah, 0
+sampleText					BYTE	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 0Dh, 0Ah, 0
 
 ; CODE SEGMENT
 .code
