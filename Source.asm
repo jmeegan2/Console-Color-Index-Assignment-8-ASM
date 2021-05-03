@@ -29,6 +29,12 @@ sampleText					BYTE	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 0Dh, 0A
 ;  for overall code readability.
 ; -------------------------------------------------------------------------------------------------
 main PROC
+
+
+;Loop Instructions module 8 may be of help in making the side row of numbers 5/2/21
+
+
+
 	; Set up variables for OUTER loop.
 	mov edx, offset topRowNumbers
 	call writestring
@@ -50,18 +56,17 @@ main PROC
 		mov ECX, NUMBER_OF_COLORS
 		mov foregroundColorCounter, 0
 		
-		call SetTextColor
 			call PrintSampleText
+			call SetTextColor
 		
 		
 		;originally part of the code example i copied this outline from, may come back to later not sure 5/1
 		;foregroundLoop:
 			; Set the newly forged text color and display the sample message.
-			;call SetTextColor
-			;call PrintSampleText
+
 
 			; Move onto the next foreground color.
-			inc AL
+		;	inc AL
 		;loop foregroundLoop
 		
 		; Restore the ECX contents to allow OUTER loop to continue flowing naturally.
@@ -72,6 +77,9 @@ main PROC
 	loop backgroundLoop
 	
 	; Indicate normal termination to OS.
+	call crlf
+	call crlf
+	call crlf
 	invoke ExitProcess, 0
 main ENDP
 
