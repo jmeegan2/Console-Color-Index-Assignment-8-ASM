@@ -1,3 +1,10 @@
+
+;Currently working on how to display the side numbers 5/3
+
+
+
+
+
 ; EXTERNAL DEPENDENCIES
 INCLUDE		Irvine32.inc
 INCLUDELIB	Irvine32.lib
@@ -6,7 +13,6 @@ INCLUDELIB	Irvine32.lib
 .386
 .model flat, stdcall
 .stack 4096
-
 ; PROTOTYPES
 ExitProcess PROTO, dwExitCode:DWORD
 
@@ -16,9 +22,9 @@ NUMBER_OF_COLORS =		16d
 ; DATA SEGMENT
 .data
 topRowNumbers				BYTE    "+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +11 +12 +13 +14 +15", 0
-foregroundColorCounter		BYTE	2
+foregroundColorCounter		BYTE	1
 backgroundColorCounter		BYTE	2
-moreText					BYTE    "help", 0Dh, 0Ah, 0
+;moreText					BYTE    "help", 0Dh, 0Ah, 0
 sampleText					BYTE	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 0Dh, 0Ah, 0
 
 ; CODE SEGMENT
@@ -60,6 +66,8 @@ main PROC
 			
 			call SetTextColor
 		call PrintSampleText
+		;call PrintMoreText
+
 		
 		;originally part of the code example i copied this outline from, may come back to later not sure 5/1
 		;foregroundLoop:
@@ -96,5 +104,17 @@ PrintSampleText PROC
 	pop EDX
 	ret
 PrintSampleText ENDP
+;PrintMoreText PROC
+	; This procedure uses EDX internally, so preverve it.
+	;push EDX
+	
+	; Write the text.
+;	mov EDX, OFFSET moreText
+	;call WriteString
+
+	; Restore EDX upon procedure completion.
+	;pop EDX
+;	ret
+;PrintMoreText ENDP
 
 END main		; End of program OPCODES.
