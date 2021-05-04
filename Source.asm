@@ -25,7 +25,7 @@ topRowNumbers				BYTE    "+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +11 +12 +13 +14 +15", 0
 foregroundColorCounter		BYTE	1
 backgroundColorCounter		BYTE	2
 ;moreText					BYTE    "help", 0Dh, 0Ah, 0
-NumberByte					byte	1,2
+NumberByte					byte	1,2,3
 sampleText					BYTE	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 0Dh, 0Ah, 0
 
 ; CODE SEGMENT
@@ -47,12 +47,11 @@ main PROC
 	mov edx, offset topRowNumbers
 	
 	mov ECX, NUMBER_OF_COLORS
-	MOVZX EAX, [NumberBYTE + 0]		; 1
-	CALL WriteDec	
-	call crlf
-	MOVZX EAX, [NumberBYTE + 1]		; 2
-	CALL WriteDec		
-	mov backgroundColorCounter, 1						;BACKGROUND COLOR CHANGE IS HERE
+	;MOVZX EAX, [NumberBYTE + 1]		; 2
+	;CALL WriteDec													;This will show a number in the first line
+	
+	mov backgroundColorCounter, 1	
+	;BACKGROUND COLOR CHANGE IS HERE
 	backgroundLoop:
 					
 		; Set the background color in AL.
