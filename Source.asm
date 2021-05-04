@@ -1,6 +1,6 @@
 
 ;Currently working on how to display the side numbers 5/3
-
+;can i just put in a call to print a number before call sampletext
 
 
 
@@ -25,6 +25,7 @@ topRowNumbers				BYTE    "+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +11 +12 +13 +14 +15", 0
 foregroundColorCounter		BYTE	1
 backgroundColorCounter		BYTE	2
 ;moreText					BYTE    "help", 0Dh, 0Ah, 0
+NumberByte					byte	1,2
 sampleText					BYTE	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 0Dh, 0Ah, 0
 
 ; CODE SEGMENT
@@ -44,12 +45,16 @@ main PROC
 
 	; Set up variables for OUTER loop.
 	mov edx, offset topRowNumbers
-	call writestring
-	call crlf
-
+	
 	mov ECX, NUMBER_OF_COLORS
-	mov backgroundColorCounter, 0
+	MOVZX EAX, [NumberBYTE + 0]		; 1
+	CALL WriteDec	
+	call crlf
+	MOVZX EAX, [NumberBYTE + 1]		; 2
+	CALL WriteDec		
+	mov backgroundColorCounter, 1						;BACKGROUND COLOR CHANGE IS HERE
 	backgroundLoop:
+					
 		; Set the background color in AL.
 		movzx EAX, backgroundColorCounter
 		
@@ -61,7 +66,7 @@ main PROC
 		
 		; Set up variables for INNER loop.
 		mov ECX, NUMBER_OF_COLORS
-		mov foregroundColorCounter, 0
+		mov foregroundColorCounter, 0				;FOREGROUND COLOR CHANGE IS HERE
 		
 			
 			call SetTextColor
