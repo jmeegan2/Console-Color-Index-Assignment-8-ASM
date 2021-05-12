@@ -48,7 +48,7 @@ main PROC
 	
 	mov ECX, NUMBER_OF_COLORS
 	;MOVZX EAX, [NumberBYTE + 1]		; 2
-	;CALL WriteDec													;This will show a number in the first line
+	;CALL WriteDec													;This will show a number in the first line seperate from the line of text and color 
 	
 	mov backgroundColorCounter, 1	
 	;BACKGROUND COLOR CHANGE IS HERE
