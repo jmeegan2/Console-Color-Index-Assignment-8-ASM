@@ -31,25 +31,25 @@ main PROC
 	MOV EDX, OFFSET topText		
 	CALL WriteString				; Prints top text
 
-	MOV ECX, 16						; Prime ecx for bg color loop
+	MOV ECX, 16						; Prime ecx for background color loop
 	MOV EDX, OFFSET Letter_X_Text		; Prime EDX for printing
 
 	backgroundLoop:
-		MOVZX EAX, counterBackGround		; Move BG number to EAX
+		MOVZX EAX, counterBackGround		; Move BackGround number to EAX
 		CALL WriteDec				; Print ^
 
 		PUSH ECX					; Preserve count for outside loop
 		MOV ECX, 16					; Set number for inside loop
 		foregroundLoop:
-			MOVZX EAX, counterBackGround	; Move BG number to EAX
+			MOVZX EAX, counterBackGround	; Move BackGround number to EAX
 			SHl EAX, 4				; Move it to the right part
-			MOV AL, counterForeGround		; Move the FG color into the right place
+			MOV AL, counterForeGround		; Move the ForeGround color into the right place
 			CALL SetTextColor		; Change the color
 			CALL WriteString		; Print
-			INC counterForeGround			; Shift to next FG color
+			INC counterForeGround			; Shift to next ForeGround color
 		LOOP foregroundLoop
 		POP ECX						; Return to outside loop number
-		ADD counterBackGround, 16			; Increment BG color
+		ADD counterBackGround, 16			; Increment BackGround color
 
 		MOV EAX, 7					
 		CALL SetTextColor			; Set to default console color
@@ -58,6 +58,8 @@ main PROC
 
 	CALL Crlf
 	CALL WaitMsg
+	
+	
 	INVOKE ExitProcess, 0      ; Return
 main ENDP
 
